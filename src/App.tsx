@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { TaskView, todo } from "./components/TaskView";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { DogImages } from "./components/DogImages";
+import { Gallery } from "./components/Gallery";
+import { PersonTodo } from "./components/PersonTodo";
 const tasks_row: todo[] = [
   {
     id: 0,
@@ -70,24 +73,31 @@ function App() {
     setTasks([...tasks, newTodo]);
     console.log(tasks);
   };
+
+  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+  function formatDate(date: Date) {
+    return new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(date);
+  }
   return (
     <div>
       <div>Todo List</div>
-      <div>Today</div>
+      <div>{formatDate(today)}</div>
       <div>
         {tasks
           .filter((task) => task.date === "today")
           .map((task) => (
-            <TaskView props={task} onToggle={toggleStatus} />
+            <TaskView key={task.id} props={task} onToggle={toggleStatus} />
           ))}
       </div>
 
-      <div>Tomorrow</div>
+      <div>{formatDate(tomorrow)}</div>
       <div>
         {tasks
           .filter((task) => task.date === "tomorrow")
           .map((task) => (
-            <TaskView props={task} onToggle={toggleStatus} />
+            <TaskView key={task.id} props={task} onToggle={toggleStatus} />
           ))}
       </div>
       <br />
@@ -99,8 +109,10 @@ function App() {
           <button type="submit">追加</button>
         </form>
       </div>
+      <DogImages />
+      <Gallery />
+      <PersonTodo />
     </div>
   );
 }
-
 export default App;
