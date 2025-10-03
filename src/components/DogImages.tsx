@@ -9,6 +9,19 @@ export const DogImages = () => {
       .then(({ message }) => setDogs(message));
   }, []);
   return dogs.map((dog, i) => (
-    <img key={i} alt="dog" src={dog} height={300}></img>
+    <img
+      key={i}
+      alt="dog"
+      src={dog}
+      width={300}
+      height={300}
+      loading="eager"
+      fetchPriority="high"
+      style={{
+        objectFit: "cover",
+        objectPosition: "center",
+        borderRadius: "8px",
+      }}
+    ></img>
   ));
 };
