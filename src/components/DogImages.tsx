@@ -14,9 +14,9 @@ export const DogImages = () => {
       className="relative group overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
     >
       <img
-        alt="可愛いラブラドール"
+        alt={`ラブラドール犬の写真 ${i + 1}`}
         src={dog}
-        className="w-full h-48 object-cover object-center transition-transform duration-200 group-hover:scale-105"
+        className="w-full h-48 object-cover object-center transition-transform duration-200 group-hover:scale-105 aspect-square"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200"></div>

@@ -47,7 +47,7 @@ const tasks_row: todo[] = [
 function App() {
   const [tasks, setTasks] = useState(tasks_row);
   const [isAdding, setIsAdding] = useState(false);
-  
+
   const toggleStatus = (id: number) => {
     setTasks(
       tasks.map((task) =>
@@ -67,12 +67,12 @@ function App() {
 
   const addTodo = async (data: FormData) => {
     setIsAdding(true);
-    
+
     // アニメーション効果のための遅延
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
     const newTodo: todo = {
-      id: Math.max(...tasks.map(t => t.id), -1) + 1,
+      id: Math.max(...tasks.map((t) => t.id), -1) + 1,
       task: data.task,
       status: false,
       date: "today",
@@ -91,9 +91,12 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* ヘッダー */}
-      <header className="bg-white shadow-sm border-b border-gray-200" role="banner">
+      <header
+        className="bg-white shadow-sm border-b border-gray-200"
+        role="banner"
+      >
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Todo List</h1>
+          <h1 className="text-4xl font-bold text-gray-900">Todo List</h1>
           <p className="text-gray-600 mt-2">
             今日やることを整理して、効率的に過ごしましょう
           </p>
@@ -107,14 +110,18 @@ function App() {
           <div className="card slide-in">
             <div className="flex items-center mb-6">
               <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-2xl font-semibold text-gray-900">
                 {formatDate(today)}
               </h2>
               <span className="ml-3 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
                 {tasks.filter((task) => task.date === "today").length} タスク
               </span>
             </div>
-            <div className="space-y-3" role="list" aria-label="今日のタスク一覧">
+            <div
+              className="space-y-3"
+              role="list"
+              aria-label="今日のタスク一覧"
+            >
               {tasks
                 .filter((task) => task.date === "today")
                 .map((task) => (
@@ -133,14 +140,18 @@ function App() {
           <div className="card slide-in">
             <div className="flex items-center mb-6">
               <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-2xl font-semibold text-gray-900">
                 {formatDate(tomorrow)}
               </h2>
               <span className="ml-3 px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                 {tasks.filter((task) => task.date === "tomorrow").length} タスク
               </span>
             </div>
-            <div className="space-y-3" role="list" aria-label="明日のタスク一覧">
+            <div
+              className="space-y-3"
+              role="list"
+              aria-label="明日のタスク一覧"
+            >
               {tasks
                 .filter((task) => task.date === "tomorrow")
                 .map((task) => (
@@ -157,20 +168,20 @@ function App() {
         {/* タスク追加フォーム */}
         <section className="mb-8">
           <div className="card bounce-in">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
               新しいタスクを追加
             </h3>
-            <form onSubmit={handleSubmit(addTodo)} className="flex gap-3">
+            <form onSubmit={handleSubmit(addTodo)} className="flex gap-3" aria-label="新しいタスクを追加するフォーム">
               <input
                 {...register("task", { required: "タスクを入力してください" })}
                 placeholder="タスクを入力してください..."
                 className="input-field flex-1"
                 disabled={isAdding}
               />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={`btn-primary whitespace-nowrap transition-all duration-200 ${
-                  isAdding ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
+                  isAdding ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
                 }`}
                 disabled={isAdding}
               >
@@ -180,7 +191,7 @@ function App() {
                     追加中...
                   </div>
                 ) : (
-                  '追加'
+                  "追加"
                 )}
               </button>
             </form>
@@ -190,7 +201,7 @@ function App() {
         {/* 追加コンテンツ */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="card">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Dog Images
             </h3>
             <div className="grid grid-cols-2 gap-4">
@@ -199,7 +210,7 @@ function App() {
           </div>
 
           <div className="card">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Gallery
             </h3>
             <Gallery />

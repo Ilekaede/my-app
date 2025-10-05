@@ -13,7 +13,10 @@ export const TaskView = ({
   onToggle: (id: number) => void;
 }) => {
   return (
-    <div className={`task-card fade-in ${props.status ? "task-completed" : ""}`} role="listitem">
+    <div
+      className={`task-card fade-in ${props.status ? "task-completed" : ""}`}
+      role="listitem"
+    >
       <div className="flex items-center space-x-3">
         {/* カスタムチェックボックス */}
         <div className="relative">
@@ -23,7 +26,9 @@ export const TaskView = ({
             onChange={() => onToggle(props.id)}
             className="sr-only"
             id={`task-${props.id}`}
-            aria-label={`タスク「${props.task}」を${props.status ? '未完了' : '完了'}にする`}
+            aria-label={`タスク「${props.task}」を${
+              props.status ? "未完了" : "完了"
+            }にする`}
           />
           <label
             htmlFor={`task-${props.id}`}

@@ -12,7 +12,7 @@ export const PersonTodo = () => {
           alt="Gregorio Y. Zara"
         />
         <div>
-          <h1 className="text-2xl font-bold">{person.name}'s Todo</h1>
+          <h2 className="text-2xl font-bold">{person.name}'s Todo</h2>
           <p className="text-gray-300">Aeronautics Engineer</p>
         </div>
       </div>
