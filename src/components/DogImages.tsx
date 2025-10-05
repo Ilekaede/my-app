@@ -9,7 +9,10 @@ export const DogImages = () => {
       .then(({ message }) => setDogs(message));
   }, []);
   return dogs.map((dog, i) => (
-    <div key={i} className="relative group overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+    <div
+      key={i}
+      className="relative group overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+    >
       <img
         alt="可愛いラブラドール"
         src={dog}

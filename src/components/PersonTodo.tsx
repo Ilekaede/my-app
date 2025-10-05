@@ -16,7 +16,7 @@ export const PersonTodo = () => {
           <p className="text-gray-300">Aeronautics Engineer</p>
         </div>
       </div>
-      
+
       <div className="space-y-3">
         <div className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
           <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
