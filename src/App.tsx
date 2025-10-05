@@ -65,11 +65,8 @@ function App() {
     // console.log(tasks);
   }, [tasks]);
 
-  const addTodo = async (data: FormData) => {
+  const addTodo = (data: FormData) => {
     setIsAdding(true);
-
-    // アニメーション効果のための遅延
-    await new Promise((resolve) => setTimeout(resolve, 300));
 
     const newTodo: todo = {
       id: Math.max(...tasks.map((t) => t.id), -1) + 1,
@@ -96,7 +93,7 @@ function App() {
         role="banner"
       >
         <div className="max-w-4xl mx-auto px-4 py-6">
-          <h1 className="text-4xl font-bold text-gray-900">Todo List</h1>
+          <h1 className="text-5xl font-bold text-gray-900">Todo List</h1>
           <p className="text-gray-600 mt-2 text-lg">
             今日やることを整理して、効率的に過ごしましょう
           </p>
@@ -112,7 +109,7 @@ function App() {
             <div className="card slide-in">
               <div className="flex items-center mb-6">
                 <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-                <h2 className="text-2xl font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-gray-900">
                   {formatDate(today)}
                 </h2>
                 <span className="ml-3 px-3 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
@@ -142,11 +139,12 @@ function App() {
             <div className="card slide-in">
               <div className="flex items-center mb-6">
                 <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-                <h2 className="text-2xl font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-gray-900">
                   {formatDate(tomorrow)}
                 </h2>
                 <span className="ml-3 px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
-                  {tasks.filter((task) => task.date === "tomorrow").length} タスク
+                  {tasks.filter((task) => task.date === "tomorrow").length}{" "}
+                  タスク
                 </span>
               </div>
               <div
