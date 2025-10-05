@@ -97,73 +97,76 @@ function App() {
       >
         <div className="max-w-4xl mx-auto px-4 py-6">
           <h1 className="text-4xl font-bold text-gray-900">Todo List</h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 text-lg">
             今日やることを整理して、効率的に過ごしましょう
           </p>
         </div>
       </header>
 
       {/* メインコンテンツ */}
-      <main className="max-w-4xl mx-auto px-4 py-8" role="main">
-        {/* 今日のタスク */}
-        <section className="mb-8">
-          <div className="card slide-in">
-            <div className="flex items-center mb-6">
-              <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-              <h2 className="text-2xl font-semibold text-gray-900">
-                {formatDate(today)}
-              </h2>
-              <span className="ml-3 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
-                {tasks.filter((task) => task.date === "today").length} タスク
-              </span>
+      <main className="max-w-6xl mx-auto px-4 py-8" role="main">
+        {/* タスクセクション - 横並びレイアウト */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* 今日のタスク */}
+          <section>
+            <div className="card slide-in">
+              <div className="flex items-center mb-6">
+                <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {formatDate(today)}
+                </h2>
+                <span className="ml-3 px-3 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
+                  {tasks.filter((task) => task.date === "today").length} タスク
+                </span>
+              </div>
+              <div
+                className="space-y-3"
+                role="list"
+                aria-label="今日のタスク一覧"
+              >
+                {tasks
+                  .filter((task) => task.date === "today")
+                  .map((task) => (
+                    <TaskView
+                      key={task.id}
+                      props={task}
+                      onToggle={toggleStatus}
+                    />
+                  ))}
+              </div>
             </div>
-            <div
-              className="space-y-3"
-              role="list"
-              aria-label="今日のタスク一覧"
-            >
-              {tasks
-                .filter((task) => task.date === "today")
-                .map((task) => (
-                  <TaskView
-                    key={task.id}
-                    props={task}
-                    onToggle={toggleStatus}
-                  />
-                ))}
-            </div>
-          </div>
-        </section>
+          </section>
 
-        {/* 明日のタスク */}
-        <section className="mb-8">
-          <div className="card slide-in">
-            <div className="flex items-center mb-6">
-              <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-              <h2 className="text-2xl font-semibold text-gray-900">
-                {formatDate(tomorrow)}
-              </h2>
-              <span className="ml-3 px-2 py-1 bg-green-100 text-green-800 text-sm rounded-full">
-                {tasks.filter((task) => task.date === "tomorrow").length} タスク
-              </span>
+          {/* 明日のタスク */}
+          <section>
+            <div className="card slide-in">
+              <div className="flex items-center mb-6">
+                <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                <h2 className="text-2xl font-semibold text-gray-900">
+                  {formatDate(tomorrow)}
+                </h2>
+                <span className="ml-3 px-3 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
+                  {tasks.filter((task) => task.date === "tomorrow").length} タスク
+                </span>
+              </div>
+              <div
+                className="space-y-3"
+                role="list"
+                aria-label="明日のタスク一覧"
+              >
+                {tasks
+                  .filter((task) => task.date === "tomorrow")
+                  .map((task) => (
+                    <TaskView
+                      key={task.id}
+                      props={task}
+                      onToggle={toggleStatus}
+                    />
+                  ))}
+              </div>
             </div>
-            <div
-              className="space-y-3"
-              role="list"
-              aria-label="明日のタスク一覧"
-            >
-              {tasks
-                .filter((task) => task.date === "tomorrow")
-                .map((task) => (
-                  <TaskView
-                    key={task.id}
-                    props={task}
-                    onToggle={toggleStatus}
-                  />
-                ))}
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         {/* タスク追加フォーム */}
         <section className="mb-8">
@@ -171,7 +174,11 @@ function App() {
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               新しいタスクを追加
             </h3>
-            <form onSubmit={handleSubmit(addTodo)} className="flex gap-3" aria-label="新しいタスクを追加するフォーム">
+            <form
+              onSubmit={handleSubmit(addTodo)}
+              className="flex gap-3"
+              aria-label="新しいタスクを追加するフォーム"
+            >
               <input
                 {...register("task", { required: "タスクを入力してください" })}
                 placeholder="タスクを入力してください..."
