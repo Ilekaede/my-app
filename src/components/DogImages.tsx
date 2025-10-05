@@ -9,19 +9,14 @@ export const DogImages = () => {
       .then(({ message }) => setDogs(message));
   }, []);
   return dogs.map((dog, i) => (
-    <img
-      key={i}
-      alt="dog"
-      src={dog}
-      width={300}
-      height={300}
-      loading="eager"
-      fetchPriority="high"
-      style={{
-        objectFit: "cover",
-        objectPosition: "center",
-        borderRadius: "8px",
-      }}
-    ></img>
+    <div key={i} className="relative group overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+      <img
+        alt="可愛いラブラドール"
+        src={dog}
+        className="w-full h-48 object-cover object-center transition-transform duration-200 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200"></div>
+    </div>
   ));
 };
