@@ -37,14 +37,11 @@ export const TaskView = ({
                 ? "bg-green-500 border-green-500 text-white"
                 : "border-gray-300 hover:border-blue-400 hover:bg-blue-50"
             }`}
-          >
-          </label>
+          ></label>
         </div>
 
         {/* タスクテキスト */}
-        <span
-          className="flex-1 text-gray-900 text-base font-medium transition-all duration-200"
-        >
+        <span className="flex-1 text-gray-900 text-base font-medium transition-all duration-200">
           {props.task}
         </span>
 
